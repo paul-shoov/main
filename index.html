@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주식회사 슈브 - 자연친화적인 방향제</title>
+    
+    <!-- Google Fonts: Noto Sans KR 적용 (전문적이고 깔끔한 타이포그래피) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           CSS 변수 (디자인 시스템) 설정
+           ========================================================================== */
+        :root {
+            --primary-color: #007BFF; /* 포인트 컬러: 신뢰감을 주는 블루 */
+            --bg-color: #FFFFFF;      /* 배경 컬러: 미니멀리즘 화이트 */
+            --text-color: #333333;    /* 기본 텍스트 컬러: 가독성 높은 다크 그레이 */
+            --light-bg: #F8F9FA;      /* 서브 배경 컬러: 섹션 구분을 위한 연한 그레이 */
+            --transition: all 0.3s ease-in-out;
+            --header-height: 80px;
+        }
+
+        /* ==========================================================================
+           글로벌 리셋 및 기본 설정
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            /* 스무스 스크롤: 네비게이션 클릭 시 부드럽게 이동 */
+            scroll-behavior: smooth;
+            /* 고정 헤더에 의해 콘텐츠가 가려지는 현상 방지 */
+            scroll-padding-top: var(--header-height);
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 공통 섹션 컨테이너 (여백 및 최대 너비 설정) */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+        }
+
+        /* ==========================================================================
+           헤더 (Header & Navigation)
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: rgba(255, 255, 255, 0.95); /* 반투명 배경 */
+            backdrop-filter: blur(10px); /* 배경 블러 효과 (최신 브라우저 지원) */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav {
+            max-width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ==========================================================================
+           메인 (Hero Section)
+           ========================================================================== */
+        #hero {
+            height: 100vh;
+            min-height: 600px;
+            /* 고요한 숲 고화질 배경 이미지 (Unsplash) */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #FFFFFF;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* ==========================================================================
+           소개 (About Us Section)
+           ========================================================================== */
+        #about {
+            background-color: var(--bg-color);
+        }
+
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .highlight-text {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* ==========================================================================
+           제품 (Products Section)
+           ========================================================================== */
+        #products {
+            background-color: var(--light-bg); /* 섹션 구분을 위한 배경색 적용 */
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .product-card {
+            background-color: var(--bg-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            text-align: center;
+            padding-bottom: 30px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px); /* 호버 시 위로 살짝 뜨는 효과 */
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.1); /* 블루 톤의 그림자 추가 */
+        }
+
+        .product-image {
+            height: 250px;
+            background: url('https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+        }
+
+        .product-info {
+            padding: 30px 20px 0;
+        }
+
+        .product-info h3 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .btn-view {
+            display: inline-block;
+            padding: 10px 30px;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-view:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+        }
+
+        /* ==========================================================================
+           위치 (Location Section)
+           ========================================================================== */
+        #location {
+            background-color: var(--bg-color);
+        }
+
+        .location-wrapper {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .location-info {
+            flex: 1;
+        }
+
+        .info-item {
+            margin-bottom: 30px;
+        }
+
+        .info-item h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-item p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .map-container {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* ==========================================================================
+           푸터 (Footer)
+           ========================================================================== */
+        footer {
+            background-color: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================================================
+           반응형 웹 (Responsive Design) - 태블릿 및 모바일 대응
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                gap: 20px;
+            }
+            .nav-links a {
+                font-size: 0.95rem;
+            }
+            .location-wrapper {
+                flex-direction: column; /* 모바일에서는 세로로 배치 */
+            }
+            .map-container {
+                width: 100%;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none; /* 모바일 환경이 협소할 경우 간결함을 위해 메뉴 숨김 (실무에선 햄버거 메뉴 도입 권장) */
+            }
+        }
+
+        /* ==========================================================================
+           스크롤 애니메이션 클래스
+           ========================================================================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+        <nav>
+            <a href="#hero" class="logo">SHUV</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#location">Location</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content (의미론적 구분을 위한 main 태그 사용) -->
+    <main>
+        <!-- 1. Hero Section (메인) -->
+        <section id="hero">
+            <div class="hero-content fade-in">
+                <h1>자연친화적인 방향제</h1>
+                <p>당신의 공간에 고요한 숲의 숨결을 채웁니다.</p>
+            </div>
+        </section>
+
+        <!-- 2. About Us Section (소개) -->
+        <section id="about" class="container">
+            <h2 class="section-title fade-in">About Us</h2>
+            <div class="about-content fade-in">
+                <p>
+                    주식회사 슈브는 인위적인 향을 거부합니다.<br><br>
+                    우리가 숨 쉬는 공간은 가장 안전하고 편안해야 하기에,<br>
+                    유해 화학물질을 일절 배제하고 <span class="highlight-text">100% 자연 유래 천연 성분</span>만을 고집합니다.<br><br>
+                    안심하고 호흡할 수 있는 깨끗한 향기로, 당신의 일상에 진정한 쉼(休)을 선사합니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. Products Section (제품) -->
+        <section id="products">
+            <div class="container fade-in">
+                <h2 class="section-title">Products</h2>
+                <div class="product-grid">
+                    <!-- 미니멀 제품 카드 -->
+                    <div class="product-card">
+                        <div class="product-image"></div>
+                        <div class="product-info">
+                            <h3>시그니처 디퓨저 '숲'</h3>
+                            <p>아침 이슬을 머금은 편백나무 숲의 상쾌함을 그대로 담아낸 100% 천연 에센셜 오일 디퓨저입니다.</p>
+                            <button class="btn-view">자세히 보기</button>
+                        </div>
+                    </div>
+                    <!-- 확장성을 위해 카드를 추가할 수 있는 구조 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Location Section (위치) -->
+        <section id="location" class="container fade-in">
+            <h2 class="section-title">Location</h2>
+            <div class="location-wrapper">
+                <div class="location-info">
+                    <div class="info-item">
+                        <h4>🕒 운영 시간</h4>
+                        <p>평일 오전 9:00 ~ 오후 7:00<br>(주말 및 공휴일 휴무)</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>📍 오시는 길</h4>
+                        <p>경기도 시흥시 수풀안길 9-36<br>주식회사 슈브 본사 및 쇼룸</p>
+                    </div>
+                </div>
+                
+                <!-- Google Maps Embed -->
+                <div class="map-container">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=경기도%20시흥시%20수풀안길%209-36&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" 
+                        height="350" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 주식회사 슈브. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript 로직 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. 스크롤 애니메이션 (Intersection Observer API 사용)
+            // 요소가 화면에 나타날 때 부드럽게 페이드인 되는 최신 기법입니다.
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // 요소가 15% 보일 때 애니메이션 실행
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // 한 번 실행된 애니메이션은 다시 실행하지 않음 (성능 최적화)
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+
+            // 2. 헤더 스크롤 효과 (추가적인 UI 피드백)
+            // 스크롤을 내리면 헤더의 그림자를 진하게 만들어 깊이감을 줍니다.
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
