@@ -3,476 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>주식회사 슈브 - 자연친화적인 방향제</title>
+    <title>SYLVA - 당신의 공간에 진짜 숲을 들여놓으세요 | 100% 천연방향제</title>
     
-    <!-- Google Fonts: Noto Sans KR 적용 (전문적이고 깔끔한 타이포그래피) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+    <!-- 폰트: 깨끗하고 모던한 느낌을 주는 Pretendard 폰트 사용 -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    
+    <!-- 아이콘: FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // 브랜드 톤앤매너에 맞춘 커스텀 컬러 테마 설정
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#EBF1E6', // 부드러운 배경 그린
+                            DEFAULT: '#4A7c59', // 메인 싱그러운 그린
+                            dark: '#30533B', // 텍스트용 다크 그린
+                        },
+                        beige: {
+                            100: '#FDFBF7', // 메인 배경 베이지
+                            200: '#F5F2E9', // 섹션 구분용 약간 진한 베이지
+                        },
+                        wood: '#5C4033' // 우드톤 포인트
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* ==========================================================================
-           CSS 변수 (디자인 시스템) 설정
-           ========================================================================== */
-        :root {
-            --primary-color: #007BFF; /* 포인트 컬러: 신뢰감을 주는 블루 */
-            --bg-color: #FFFFFF;      /* 배경 컬러: 미니멀리즘 화이트 */
-            --text-color: #333333;    /* 기본 텍스트 컬러: 가독성 높은 다크 그레이 */
-            --light-bg: #F8F9FA;      /* 서브 배경 컬러: 섹션 구분을 위한 연한 그레이 */
-            --transition: all 0.3s ease-in-out;
-            --header-height: 80px;
-        }
-
-        /* ==========================================================================
-           글로벌 리셋 및 기본 설정
-           ========================================================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            /* 스무스 스크롤: 네비게이션 클릭 시 부드럽게 이동 */
-            scroll-behavior: smooth;
-            /* 고정 헤더에 의해 콘텐츠가 가려지는 현상 방지 */
-            scroll-padding-top: var(--header-height);
-        }
-
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* 공통 섹션 컨테이너 (여백 및 최대 너비 설정) */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: var(--text-color);
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: var(--primary-color);
-            margin: 15px auto 0;
-        }
-
-        /* ==========================================================================
-           헤더 (Header & Navigation)
-           ========================================================================== */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--header-height);
-            background-color: rgba(255, 255, 255, 0.95); /* 반투명 배경 */
-            backdrop-filter: blur(10px); /* 배경 블러 효과 (최신 브라우저 지원) */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        nav {
-            max-width: 1200px;
-            height: 100%;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* ==========================================================================
-           메인 (Hero Section)
-           ========================================================================== */
-        #hero {
-            height: 100vh;
-            min-height: 600px;
-            /* 고요한 숲 고화질 배경 이미지 (Unsplash) */
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #FFFFFF;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        /* ==========================================================================
-           소개 (About Us Section)
-           ========================================================================== */
-        #about {
-            background-color: var(--bg-color);
-        }
-
-        .about-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        .highlight-text {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-
-        /* ==========================================================================
-           제품 (Products Section)
-           ========================================================================== */
-        #products {
-            background-color: var(--light-bg); /* 섹션 구분을 위한 배경색 적용 */
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .product-card {
-            background-color: var(--bg-color);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            text-align: center;
-            padding-bottom: 30px;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px); /* 호버 시 위로 살짝 뜨는 효과 */
-            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.1); /* 블루 톤의 그림자 추가 */
-        }
-
-        .product-image {
-            height: 250px;
-            background: url('https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
-        }
-
-        .product-info {
-            padding: 30px 20px 0;
-        }
-
-        .product-info h3 {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            margin-bottom: 15px;
-        }
-
-        .product-info p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .btn-view {
-            display: inline-block;
-            padding: 10px 30px;
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            border-radius: 30px;
-            font-weight: 500;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .btn-view:hover {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-        }
-
-        /* ==========================================================================
-           위치 (Location Section)
-           ========================================================================== */
-        #location {
-            background-color: var(--bg-color);
-        }
-
-        .location-wrapper {
-            display: flex;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .location-info {
-            flex: 1;
-        }
-
-        .info-item {
-            margin-bottom: 30px;
-        }
-
-        .info-item h4 {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .info-item p {
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        .map-container {
-            flex: 1;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        /* ==========================================================================
-           푸터 (Footer)
-           ========================================================================== */
-        footer {
-            background-color: #222;
-            color: #ccc;
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9rem;
-        }
-
-        /* ==========================================================================
-           반응형 웹 (Responsive Design) - 태블릿 및 모바일 대응
-           ========================================================================== */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .nav-links {
-                gap: 20px;
-            }
-            .nav-links a {
-                font-size: 0.95rem;
-            }
-            .location-wrapper {
-                flex-direction: column; /* 모바일에서는 세로로 배치 */
-            }
-            .map-container {
-                width: 100%;
-                height: 300px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-links {
-                display: none; /* 모바일 환경이 협소할 경우 간결함을 위해 메뉴 숨김 (실무에선 햄버거 메뉴 도입 권장) */
-            }
-        }
-
-        /* ==========================================================================
-           스크롤 애니메이션 클래스
-           ========================================================================== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* 부드러운 스크롤 효과 (CSS를 통한 UX 개선) */
+        html { scroll-behavior: smooth; }
     </style>
 </head>
-<body>
+<body class="bg-beige-100 text-gray-800 font-sans antialiased">
 
-    <!-- Header & Navigation -->
-    <header id="header">
-        <nav>
-            <a href="#hero" class="logo">SHUV</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#location">Location</a></li>
-            </ul>
-        </nav>
+    <!-- Header / Navigation -->
+    <!-- 시맨틱 마크업(Semantic Markup): 의미론적인 태그인 <header>와 <nav>를 사용하여 웹 접근성과 검색엔진 최적화(SEO)를 높였습니다. -->
+    <header class="fixed w-full top-0 bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <!-- 로고 -->
+                    <a href="#" class="text-2xl font-bold text-brand-dark tracking-widest uppercase">Sylva</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-brand transition-colors font-medium">브랜드 스토리</a>
+                    <a href="#features" class="text-gray-600 hover:text-brand transition-colors font-medium">특장점</a>
+                    <a href="#product" class="text-gray-600 hover:text-brand transition-colors font-medium">제품 소개</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-brand transition-colors font-medium">고객 후기</a>
+                </nav>
+                <div>
+                    <!-- CTA(Call To Action) 버튼: 우측 상단에 배치하여 언제든 구매 페이지로 이동할 수 있도록 유도 -->
+                    <a href="#product" class="bg-brand text-white px-5 py-2 rounded-full font-bold hover:bg-brand-dark transition-colors shadow-sm">구매하기</a>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- Main Content (의미론적 구분을 위한 main 태그 사용) -->
-    <main>
-        <!-- 1. Hero Section (메인) -->
-        <section id="hero">
-            <div class="hero-content fade-in">
-                <h1>자연친화적인 방향제</h1>
-                <p>당신의 공간에 고요한 숲의 숨결을 채웁니다.</p>
+    <main class="pt-16">
+        <!-- 1. Hero Section -->
+        <!-- CRO(전환율 최적화) 포인트: 시선을 사로잡는 강력한 카피와 함께 화면 중앙에 명확한 CTA를 배치하여 즉각적인 반응을 유도합니다. -->
+        <section id="hero" class="relative bg-brand-dark h-[600px] flex items-center justify-center">
+            <div class="absolute inset-0 w-full h-full">
+                <!-- 배경 이미지 오버레이 처리로 텍스트 가독성 확보 -->
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2000&auto=format&fit=crop" alt="안개 낀 고요한 숲 속 풍경" class="w-full h-full object-cover opacity-40">
             </div>
-        </section>
-
-        <!-- 2. About Us Section (소개) -->
-        <section id="about" class="container">
-            <h2 class="section-title fade-in">About Us</h2>
-            <div class="about-content fade-in">
-                <p>
-                    주식회사 슈브는 인위적인 향을 거부합니다.<br><br>
-                    우리가 숨 쉬는 공간은 가장 안전하고 편안해야 하기에,<br>
-                    유해 화학물질을 일절 배제하고 <span class="highlight-text">100% 자연 유래 천연 성분</span>만을 고집합니다.<br><br>
-                    안심하고 호흡할 수 있는 깨끗한 향기로, 당신의 일상에 진정한 쉼(休)을 선사합니다.
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-8">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-md">
+                    당신의 공간에<br/> 진짜 숲을 들여놓으세요
+                </h1>
+                <p class="text-lg md:text-xl text-gray-100 mb-10 font-light break-keep drop-shadow">
+                    인공 화합물 0%, 자연이 준 100% 천연 에센셜 오일의 숨결.<br class="hidden md:block">
+                    실바(SYLVA)와 함께 일상 속 온전한 쉼을 경험하세요.
                 </p>
+                <a href="#product" class="inline-block bg-white text-brand-dark font-bold text-lg px-10 py-4 rounded-full shadow-lg hover:bg-beige-100 hover:scale-105 transition-transform duration-300">
+                    지금 숲의 향기 경험하기
+                </a>
             </div>
         </section>
 
-        <!-- 3. Products Section (제품) -->
-        <section id="products">
-            <div class="container fade-in">
-                <h2 class="section-title">Products</h2>
-                <div class="product-grid">
-                    <!-- 미니멀 제품 카드 -->
-                    <div class="product-card">
-                        <div class="product-image"></div>
-                        <div class="product-info">
-                            <h3>시그니처 디퓨저 '숲'</h3>
-                            <p>아침 이슬을 머금은 편백나무 숲의 상쾌함을 그대로 담아낸 100% 천연 에센셜 오일 디퓨저입니다.</p>
-                            <button class="btn-view">자세히 보기</button>
-                        </div>
+        <!-- 2. About Us -->
+        <section id="about" class="py-24 bg-beige-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                    <figure>
+                        <!-- 맑고 밝은 푸른 하늘, 구름, 초록 숲이 어우러진 안정적인 이미지로 교체 -->
+                        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80" alt="구름이 뜬 밝은 푸른 하늘과 싱그러운 초록 숲" class="rounded-3xl shadow-xl w-full object-cover h-[450px]">
+                    </figure>
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">자연의 순수함을 그대로,<br>SYLVA의 철학</h2>
+                        <p class="text-gray-600 leading-relaxed mb-6 text-lg">
+                            실바(SYLVA)는 <strong class="text-brand-dark">'자연이 가장 완벽한 치유자'</strong>라는 믿음에서 출발했습니다. 
+                            우리가 매일 숨 쉬는 공간은 가장 안전하고 편안해야 합니다.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed text-lg">
+                            실바(SYLVA)는 라틴어로 '숲'을 의미합니다. 화학적 합성 향료가 주는 일시적인 자극 대신, 
+                            꽃과 나무, 바람이 빚어낸 100% 천연 에센셜 오일만을 고집하여 지친 심신에 진정한 아로마테라피를 선사합니다.
+                        </p>
                     </div>
-                    <!-- 확장성을 위해 카드를 추가할 수 있는 구조 -->
                 </div>
             </div>
         </section>
 
-        <!-- 4. Location Section (위치) -->
-        <section id="location" class="container fade-in">
-            <h2 class="section-title">Location</h2>
-            <div class="location-wrapper">
-                <div class="location-info">
-                    <div class="info-item">
-                        <h4>🕒 운영 시간</h4>
-                        <p>평일 오전 9:00 ~ 오후 7:00<br>(주말 및 공휴일 휴무)</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>📍 오시는 길</h4>
-                        <p>경기도 시흥시 수풀안길 9-36<br>주식회사 슈브 본사 및 쇼룸</p>
-                    </div>
+        <!-- 3. Features -->
+        <section id="features" class="py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">왜 실바(SYLVA)인가요?</h2>
+                    <p class="text-gray-600 text-lg">자연과 사람, 모두를 생각하는 세 가지 약속</p>
                 </div>
                 
-                <!-- Google Maps Embed -->
-                <div class="map-container">
-                    <iframe 
-                        src="https://maps.google.com/maps?q=경기도%20시흥시%20수풀안길%209-36&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                        width="100%" 
-                        height="350" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <!-- Feature 1 -->
+                    <article class="text-center group p-6 rounded-2xl hover:bg-beige-100 transition-colors duration-300">
+                        <div class="w-24 h-24 mx-auto bg-brand-light rounded-full flex items-center justify-center mb-6 group-hover:bg-brand group-hover:scale-110 transition-all duration-300 shadow-sm">
+                            <i class="fa-solid fa-leaf text-4xl text-brand group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">화학물질 무첨가</h3>
+                        <p class="text-gray-600 leading-relaxed break-keep">
+                            머리 아픈 인공향은 이제 그만.<br>합성 알코올, 보존제 없이 자연 유래 성분만 정직하게 담았습니다.
+                        </p>
+                    </article>
+                    
+                    <!-- Feature 2 -->
+                    <article class="text-center group p-6 rounded-2xl hover:bg-beige-100 transition-colors duration-300">
+                        <div class="w-24 h-24 mx-auto bg-brand-light rounded-full flex items-center justify-center mb-6 group-hover:bg-brand group-hover:scale-110 transition-all duration-300 shadow-sm">
+                            <i class="fa-solid fa-wind text-4xl text-brand group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">은은하고 깊은 발향</h3>
+                        <p class="text-gray-600 leading-relaxed break-keep">
+                            전문 조향사의 세밀한 블렌딩으로 공간에 머무는 내내 숲을 거니는 듯한 심신의 안정을 제공합니다.
+                        </p>
+                    </article>
+
+                    <!-- Feature 3 -->
+                    <article class="text-center group p-6 rounded-2xl hover:bg-beige-100 transition-colors duration-300">
+                        <div class="w-24 h-24 mx-auto bg-brand-light rounded-full flex items-center justify-center mb-6 group-hover:bg-brand group-hover:scale-110 transition-all duration-300 shadow-sm">
+                            <i class="fa-solid fa-shield-cat text-4xl text-brand group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">안전성 공인 인증</h3>
+                        <p class="text-gray-600 leading-relaxed break-keep">
+                            공인 기관의 엄격한 유해성분 불검출 테스트 통과. 반려동물과 어린아이가 있는 집에서도 안심입니다.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Product Showcase -->
+        <section id="product" class="py-24 bg-beige-200">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row transform transition-all hover:shadow-2xl">
+                    <div class="md:w-1/2 relative">
+                        <!-- 이미지 로드 오류를 원천 차단하기 위해 안정적인 Placeholder 서비스 적용 -->
+                        <!-- 추후 이 src 부분에 실제 촬영하신 숲 배경의 리드 디퓨저 사진 경로(예: ./images/product.jpg)를 넣어주시면 됩니다. -->
+                        <img src="https://placehold.co/800x800/EBF1E6/30533B?text=Reed+Diffuser%0A(Green+Forest+Background)" alt="초록 숲 배경의 리드 디퓨저 (임시)" class="w-full h-full object-cover">
+                        <!-- 제품 뱃지 -->
+                        <div class="absolute top-6 left-6 bg-brand-dark text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                            Best Seller
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-10 md:p-14 flex flex-col justify-center">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">고요한 숲속</h2>
+                        <p class="text-gray-500 mb-6 font-medium">Silent Forest Natural Diffuser, 200ml</p>
+                        
+                        <p class="text-gray-700 leading-relaxed mb-8 break-keep">
+                            새벽이슬을 머금은 편백나무 숲의 상쾌함과 흙내음을 그대로 병에 담았습니다. 
+                            시트러스의 첫 향과 묵직한 우디 베이스가 어우러져 하루의 피로를 씻어냅니다.
+                        </p>
+                        
+                        <!-- 가격 앵커링(Price Anchoring): 할인 전 가격을 함께 보여주어 소비자가 느끼는 가치를 극대화하는 심리학적 기법입니다. -->
+                        <div class="border-t border-b border-gray-100 py-6 mb-8 bg-gray-50/50 rounded-lg px-4 mt-2">
+                            <div class="flex items-end justify-between">
+                                <div>
+                                    <span class="text-gray-400 line-through text-lg">32,000원</span>
+                                    <div class="text-4xl font-bold text-brand-dark mt-1 flex items-baseline">
+                                        28,000<span class="text-2xl font-bold ml-1">원</span> 
+                                        <span class="text-base font-normal text-gray-500 ml-2">/ 개</span>
+                                    </div>
+                                </div>
+                                <div class="text-red-500 font-bold bg-red-50 border border-red-100 px-3 py-1 rounded text-lg shadow-sm">
+                                    12% OFF
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-brand text-white font-bold text-xl py-5 rounded-xl shadow-md hover:bg-brand-dark hover:shadow-lg transition-all transform hover:-translate-y-1 flex justify-center items-center gap-2">
+                            <i class="fa-solid fa-cart-shopping"></i> 장바구니 담기
+                        </button>
+                        <p class="text-center text-sm text-gray-500 mt-4"><i class="fa-solid fa-truck-fast text-brand"></i> 평일 오후 2시 이전 결제 시 <strong>당일 발송</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Testimonials (고객 후기) -->
+        <section id="testimonials" class="py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">온 가족이 숨 쉬는 공간이니까</h2>
+                    <p class="text-gray-600 text-lg">까다로운 소비자들이 먼저 알아본 실바의 가치</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Review 1 -->
+                    <blockquote class="bg-beige-100 p-10 rounded-3xl relative shadow-sm border border-beige-200">
+                        <i class="fa-solid fa-quote-left text-5xl text-brand/10 absolute top-8 left-8"></i>
+                        <div class="relative z-10">
+                            <div class="flex text-yellow-400 mb-4 text-lg">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 text-lg leading-relaxed mb-8 break-keep">
+                                "강아지를 키우고 있어서 방향제 성분에 정말 예민한 편이에요. 실바는 전성분이 투명하고 공인 인증까지 받아서 안심하고 쓰고 있습니다. 향도 전혀 자극적이지 않고 은은해서 저희 집 댕댕이도 거부감 없이 편안해하네요!"
+                            </p>
+                            <div class="flex items-center mt-auto border-t border-gray-200 pt-6">
+                                <div class="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center overflow-hidden border-2 border-white shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=150&auto=format&fit=crop" alt="반려견" class="w-full h-full object-cover">
+                                </div>
+                                <div class="ml-4">
+                                    <div class="font-bold text-gray-900 text-lg">김** 님</div>
+                                    <div class="text-sm text-gray-500 font-medium">30대, 웰시코기 보호자</div>
+                                </div>
+                            </div>
+                        </div>
+                    </blockquote>
+
+                    <!-- Review 2 -->
+                    <blockquote class="bg-beige-100 p-10 rounded-3xl relative shadow-sm border border-beige-200">
+                        <i class="fa-solid fa-quote-left text-5xl text-brand/10 absolute top-8 left-8"></i>
+                        <div class="relative z-10">
+                            <div class="flex text-yellow-400 mb-4 text-lg">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 text-lg leading-relaxed mb-8 break-keep">
+                                "아이 방에 두려고 꼼꼼히 따져보고 샀어요. 화학 성분 제로라는 점이 가장 마음에 들었습니다. 퇴근 후 지친 몸으로 방에 들어설 때마다 진짜 숲속에 온 듯 코끝이 상쾌해지며 힐링되는 기분이에요. 재구매 의사 200%입니다."
+                            </p>
+                            <div class="flex items-center mt-auto border-t border-gray-200 pt-6">
+                                <div class="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center overflow-hidden border-2 border-white shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop" alt="워킹맘" class="w-full h-full object-cover">
+                                </div>
+                                <div class="ml-4">
+                                    <div class="font-bold text-gray-900 text-lg">이** 님</div>
+                                    <div class="text-sm text-gray-500 font-medium">40대, 초등학생 자녀를 둔 워킹맘</div>
+                                </div>
+                            </div>
+                        </div>
+                    </blockquote>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 주식회사 슈브. All rights reserved.</p>
+    <footer class="bg-wood text-white/80 py-16 border-t-[6px] border-brand-dark">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <h2 class="text-3xl font-bold text-white mb-6 tracking-widest uppercase">Sylva</h2>
+                    <p class="text-base leading-relaxed mb-6 break-keep text-gray-300">
+                        자연에서 얻은 영감으로 일상에 휴식을 선물합니다.<br>
+                        100% 천연 에센셜 오일 방향제, 실바.
+                    </p>
+                    <div class="flex space-x-5">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand hover:text-white transition-all"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand hover:text-white transition-all"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand hover:text-white transition-all"><i class="fa-brands fa-twitter text-lg"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-6">고객센터</h3>
+                    <ul class="text-sm space-y-3 text-gray-300">
+                        <li><a href="tel:1588-0000" class="hover:text-white text-2xl font-bold text-white mb-1 inline-block">1588-0000</a></li>
+                        <li>평일 10:00 - 17:00</li>
+                        <li>점심시간 12:00 - 13:00</li>
+                        <li>주말 및 공휴일 휴무</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-6">법적 고지</h3>
+                    <ul class="text-sm space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">이용약관</a></li>
+                        <li><a href="#" class="text-white font-bold hover:text-brand-light transition-colors">개인정보처리방침</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">반품/교환 안내</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between text-sm text-gray-400">
+                <div class="space-y-2 mb-6 md:mb-0">
+                    <p>상호: 주식회사슈브(Shuv Co., Ltd.) <span class="mx-2">|</span> 대표: 홍길동 <span class="mx-2">|</span> 사업자등록번호: 123-45-67890</p>
+                    <p>통신판매업신고: 제2026-경기안산-0000호 <span class="mx-2">|</span> 주소: 경기도 안산시 단원구</p>
+                    <p>개인정보보호책임자: 김철수 (privacy@shuv.com)</p>
+                </div>
+                <div class="md:text-right">
+                    <p>&copy; 2026 Shuv Co., Ltd. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <!-- JavaScript 로직 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // 1. 스크롤 애니메이션 (Intersection Observer API 사용)
-            // 요소가 화면에 나타날 때 부드럽게 페이드인 되는 최신 기법입니다.
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15 // 요소가 15% 보일 때 애니메이션 실행
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // 한 번 실행된 애니메이션은 다시 실행하지 않음 (성능 최적화)
-                    }
-                });
-            }, observerOptions);
-
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(el => observer.observe(el));
-
-            // 2. 헤더 스크롤 효과 (추가적인 UI 피드백)
-            // 스크롤을 내리면 헤더의 그림자를 진하게 만들어 깊이감을 줍니다.
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
-                } else {
-                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
